@@ -27,7 +27,7 @@ TODO:
     - longest streak per habit function: print output should autocomplete d in days, w in weeks and m  in months for period value
 """
 
-
+print('schnullifax')
 
 if __name__ == '__main__':
 
