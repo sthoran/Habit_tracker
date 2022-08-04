@@ -16,20 +16,25 @@ class functions(identityClass.identity):
         :return: an integer representing the longest streak for given habit
         """
         habit = input("Please enter your habit for which you ask for the longest streak: \t").lower()
+        while habit not in self.df['habit'].unique():
+            print(f'Ups! Your habit can not be found, please retry typing your habit or press "q" to quit.')
+            habit = input()
+            if habit == 'q':
+                return habit  
         while habit not in self.df_user['habit'].unique():
             print(habit)
             print(self.df_user['habit'].unique())
             habit = input("That habit could not be found. Please try again or use 'q' to quit: \t").lower()
             if habit == 'q':
-                sys.exit('Goodbye')
+                return habit 
         period = self.df_user[self.df_user['habit'] == habit].reset_index(drop=True)['period'][0]
         longest_streak, _ = self.get_longest_streak(
             self.df_user[self.df_user['habit'] == habit]['check_off'],  # send only timetable of given habit
             self.df_user[self.df_user['habit'] == habit].reset_index(drop=True)['period'][0])
         print(f'Your longest streak for {habit} is {longest_streak} {period}.')
-        # elif habit == 'q':
-        #     sys.exit('Goodbye')
-
+        # return nothing if user wants to keep going
+        return 0
+    
 
     def analysis_all_habits(self):
         """In order to filter for all habits and their respective periodicity it is assumed that

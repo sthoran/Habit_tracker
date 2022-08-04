@@ -26,7 +26,7 @@ class identity():
 
 
     def __sql_to_pd(self):
-        """" Converts database.db in dataframe
+        """Converts database.db in dataframe
         :returns all entries of habit datebase
         """
         con, cur = sqldb.connect_db()
@@ -39,9 +39,9 @@ class identity():
 
 
     def __db_contains_un(self):
-        """ check for username in database
+        """check for username in database
         :returns False if not available
-                True is available
+                 True is available
         """
         if self.df_user.empty:
             return False
@@ -50,9 +50,9 @@ class identity():
 
 
     def __pwd_un_assignment_correct(self):
-        """ check for username and password in database
-         :return False if not available in database,
-                True if available in database
+        """check for username and password in database
+         :returns False if not available in database,
+                  True if available in database
         """
         if self.df_user[self.df_user['password'] == self.password].empty:
             return False

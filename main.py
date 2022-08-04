@@ -19,11 +19,11 @@ import analysis
 TODO:
 -unit test
 -well-written README.md 
-    - delete_habit function: write missing part for approval == 'n'
-- function delete habit returns value approval, but approval is nowhere in main.py
-- schleife zu main bauen nach jeder durchgeführen funktion einer abfrage 
-- after create habit, continue funktioniert, danach nicht mehr
-"""
+    - delete_habit function: write missing part for approval == 'n'     ####
+- function delete habit returns value approval, but approval is nowhere in main.py  ########     DONE
+- schleife zu main bauen nach jeder durchgeführen funktion einer abfrage   ##########         DONE
+- after create habit, continue funktioniert, danach nicht mehr      ##############       ???
+""" 
 
 
 if __name__ == '__main__':
@@ -33,13 +33,15 @@ if __name__ == '__main__':
     # object for classes, that are going to be used in the code
     habit = habitClass.habits(un, pwd)
     analysis = analysis.functions(un, pwd)
-
-    userinput = userInteraction.uia_habit_or_analysis()
-    """ asks for input to choose between 'maintain habit' (delete, create or check-off habit) or
+    
+    userinput = '' # so that we enter the next while loop atleast 1 time
+    
+    """asks for input to choose between 'maintain habit' (delete, create or check-off habit) or
     see 'analysis' (longest streak per habit, streak and break counts all habits) via uia_habit_or_analysis(),
     which returns input as userinput
     """
-    while True: #repeat as long as the user does not quit the program
+    while userinput != 'q': #repeat as long as the user does not quit the program
+        userinput = userInteraction.uia_habit_or_analysis()
         if userinput == 'h':
             userinput = userInteraction.habit_maintenance()
             if userinput == 'h':
@@ -52,7 +54,7 @@ if __name__ == '__main__':
                 continue
             if userinput == 'd':
                 """delete habits irrevocable from the database"""
-                habit.delete_habit()
+                userinput = habit.delete_habit()
             else:
                 # abort program
                 sys.exit("Goodbye!")
@@ -75,6 +77,8 @@ if __name__ == '__main__':
         elif userinput == 'q':
             #quit programm by user choice
             sys.exit("Goodbye!")
+    # if user immediately chooses 'q' after inputting login data
+    sys.exit("Goodbye!")
 
 
 

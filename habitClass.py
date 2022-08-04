@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 import sqldb
 import identityClass
 import datetime
@@ -66,28 +67,35 @@ class habits(identityClass.identity):
 
 
     def delete_habit(self):
-        """ Functions deletes selected habit from database. The habit is given by user via input().
+        """ Function deletes habit given by user from database.
         A second reassurance is asked if the deletion is intended.
         If answer is yes - irrevocable deletion is carried out
         If answer is no - return to beginning of program in main.py
         """
         con, cur = sqldb.connect_db()
-        habit = input("Which habit do you want to delete?:  \t")
-        approval = input("Are you sure you want to delete your habit irreversible? Please answer with yes (y), no (n), or quit(q)")
-        while approval not in ['y', 'n', 'q']:
+        # use pandas for easier queries
+        user_input = input("Which habit do you want to delete?:  \t")
+        # make use of inheritence: can work directly on self.df
+        while user_input not in self.df['habit'].unique():
+            print(f'Ups! Your habit can not be found, please retry typing your habit or press "q" to quit.')
+            user_input = input()
+            if user_input == 'q':
+                return user_input            
+        user_input = input("Are you sure you want to delete your habit irreversible? Please answer with yes (y), no (n), or quit(q):  \t")
+        while user_input not in ['y', 'n', 'q']:
             print('Input letter was wrong, Please choose between yes (y), no (n) or quit(q)')
-            if habit == 'q':
-                sys.exit('Goodbye')
-        if approval == 'y':
+            if user_input == 'q':
+                return user_input
+        if user_input == 'y':
             sql = """DELETE FROM habit WHERE username = ? AND password = ? AND habit = ?"""
-            cur.execute(sql, (self.username, self.password, habit))
-            print(f'You successfully deleted {habit} from your habit list.')
+            cur.execute(sql, (self.username, self.password, user_input))
+            print(f'You successfully deleted {user_input} from your habit list.')
             con.commit()
             con.close()
-        elif approval == 'n':
+        elif user_input == 'n':
             userInteraction.uia_habit_or_analysis()
-
-        #return userinput
+        # return nothing if user doesn't want to quit
+        return NULL
 
 
 
