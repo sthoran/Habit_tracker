@@ -1,16 +1,16 @@
 from asyncio.windows_events import NULL
 import sqldb
-import identityClass
+import identity_class
 import datetime
 import sys
 import userInteraction
 
-class habits(identityClass.identity):
+class habits(identity_class.identity):
     """class that includes all functions related to direct interference with database concerning habits, such as, create a new habit,
     check of an existing habit, or delete a habit from database. Inherits from identityClass.identity attributes like username and password.
     """
     def __init__(self, username, password):
-        identityClass.identity.__init__(self, username, password)
+        identity_class.identity.__init__(self, username, password)
         self.currentDate = datetime.date.today().strftime("%Y-%m-%d")
 
 
@@ -34,6 +34,7 @@ class habits(identityClass.identity):
         print(f'Your new habit {habit} will start today {self.currentDate}')
         con.commit()
         con.close()
+        
 
     def check_off(self):
         """This functions asks user for habit to check off and check-off date via input() function. Input of check-off date is added to user credentials

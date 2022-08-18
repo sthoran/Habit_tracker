@@ -1,26 +1,29 @@
-import identityClass
+import identity_class
 import sys
 import datetime
 import pandas as pd
 
 
-class functions(identityClass.identity):
+class ana_habits(identity_class.identity):
     """ class including all functions related to analysis of habits. Inherits from identityClass.identity"""
     def __init__(self, username, password):
-        identityClass.identity.__init__(self, username, password)
+        identity_class.identity.__init__(self, username, password)
         self.currentDate = pd.to_datetime(datetime.date.today().strftime("%Y-%m-%d"))
 
 
-    def streak_per_habit(self):
+    def streak_per_habit(self, testing=False, habit=None):
         """user specifies a habit and the longest streak for this habit will be returned
         :return: an integer representing the longest streak for given habit
         """
-        habit = input("Please enter your habit for which you ask for the longest streak: \t").lower()
-        while habit not in self.df['habit'].unique():
-            print(f'Ups! Your habit can not be found, please retry typing your habit or press "q" to quit.')
-            habit = input()
-            if habit == 'q':
-                return habit  
+        if testing:
+            pass # no request from user
+        else:
+            habit = input("Please enter your habit for which you ask for the longest streak: \t").lower()
+            while habit not in self.df['habit'].unique():
+                print(f'Ups! Your habit can not be found, please retry typing your habit or press "q" to quit.')
+                habit = input()
+                if habit == 'q':
+                    return habit  
         while habit not in self.df_user['habit'].unique():
             print(habit)
             print(self.df_user['habit'].unique())
@@ -31,9 +34,10 @@ class functions(identityClass.identity):
         longest_streak, _ = self.get_longest_streak(
             self.df_user[self.df_user['habit'] == habit]['check_off'],  # send only timetable of given habit
             self.df_user[self.df_user['habit'] == habit].reset_index(drop=True)['period'][0])
-        print(f'Your longest streak for {habit} is {longest_streak} {period}.')
+        # print(f'Your longest streak for {habit} is {longest_streak} {period}.')
         # return nothing if user wants to keep going
-        return 0
+        # return 0
+        return habit, longest_streak, period
     
 
     def analysis_all_habits(self):

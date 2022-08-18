@@ -1,5 +1,5 @@
 import sys
-import identityClass
+import identity_class
 
 
 
@@ -14,8 +14,8 @@ def uia_init():
         print('Input Letter was wrong, Please choose between Login (l), register(r), quit(q)')
         userinput = input().lower()
     if userinput == 'r' or userinput == 'l':
-        un, pwd = identityClass.ask_for_creds()
-        ident = identityClass.identity(un, pwd)
+        un, pwd = identity_class.ask_for_creds()
+        ident = identity_class.identity(un, pwd)
         if userinput == 'r':
             ident.create_ident()
         else:
