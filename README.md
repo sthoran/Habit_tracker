@@ -1,6 +1,6 @@
 # Habit Tracker
 
-### Habit tracker is an open source habit manifestation program. Document the habit tracking process and receive automated analysis evaluaions of your successes and difficulties that accompany you on the path to the new you.
+### Habit tracker is an open source habit manifestation program. Document the habit tracking process and receive automated analysis evaluations of your successes and difficulties that accompany you on the path to the new you.
 
  ## <u> Features
 
@@ -14,7 +14,7 @@
     2. Streak count and struggle count of all habits (Struggle means, longest consecutive period of not checked-off habits)
 
 
-### <u> Installation
+### <u> Quick Installation Guide
    
 
 #### Download the source code
@@ -40,8 +40,15 @@
 * now you only need to follow the questions and instructions from the habit tracker, which are run automatically by running the main.py file
 
  
+### <u> Using Pytest for static test
 
+When cloning the repository you can find static tests in the package (i.e. folder) <sub>test</sub>. Running the native cli command *pytest* from the working directory will not work. The reason for that is pythons import mechanic: The program in development is run from "main.py" and thus it is taking the namespace *__name__ == __main__*. All modules in subfolders can import modules from the root, in which main.py resides, without specifying a relative path.
+
+While this works inside an IDE which marks "main.py" as our starting point, it will not work with *pytest*, due to the reason that pytest does not know where to find the modules. There we need to call pytest via python:
+
+*python -m pytest*
+
+This will trigger pytest with normal behaviour and the static tests that are implemented.
 
 ```python
-
 ```
