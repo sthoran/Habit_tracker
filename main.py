@@ -1,25 +1,8 @@
 import sys
-
 import pandas as pd
-
-import sqldb
-import identity_class
 import habit_class
 import userInteraction
 import analysis
-
-#sqldb.create_table()
-#con, cur = sqldb.connect_db()
-#sqldb.dummy_fill_db(cur)
-#sqldb.close_db(con)
-#sqldb.show_db()
-
-
-"""
-TODO:
-- test analysis functions via CLI again
-    - test streak_per_habit
-""" 
 
 
 if __name__ == '__main__':
@@ -42,11 +25,11 @@ if __name__ == '__main__':
             userinput = userInteraction.habit_maintenance()
             if userinput == 'h':
                 """create and save a new habit in the database"""
-                habit.create_habit()
+                userinput = habit.create_habit()
                 continue
             if userinput == 'c':
                 """check off existing habits and save date in the database"""
-                habit.check_off()
+                userinput = habit.check_off()
                 continue
             if userinput == 'd':
                 """delete habits irrevocable from the database"""

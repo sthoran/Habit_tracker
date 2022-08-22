@@ -1,5 +1,4 @@
 import identity_class
-import sys
 import datetime
 import pandas as pd
 
@@ -34,9 +33,6 @@ class ana_habits(identity_class.identity):
         longest_streak, _ = self.get_longest_streak(
             self.df_user[self.df_user['habit'] == habit]['check_off'],  # send only timetable of given habit
             self.df_user[self.df_user['habit'] == habit].reset_index(drop=True)['period'][0])
-        # print(f'Your longest streak for {habit} is {longest_streak} {period}.')
-        # return nothing if user wants to keep going
-        # return 0
         return habit, longest_streak, period
     
 
