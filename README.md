@@ -31,7 +31,7 @@
 
 * set the initial database
 
-```python -c "import sqldb; sqldb.init_db()```
+```python -c "import sqldb; sqldb.init_db()"```
 
 * run the main.py file to execute the program via following bash command:
 
