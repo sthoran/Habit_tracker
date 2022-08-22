@@ -1,6 +1,6 @@
 import sqlite3
 
-DATABASE_NAME = '../habit_database.db'
+DATABASE_NAME = 'habit_database.db'
 
 
 def connect_db():

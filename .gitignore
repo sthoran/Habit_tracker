@@ -2,3 +2,4 @@ Archiv/
 __pycache__
 .vscode
 .pytest_cache
+habit_database.db
