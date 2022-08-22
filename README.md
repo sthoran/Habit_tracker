@@ -19,7 +19,7 @@
 
 #### Download the source code
 
-*git clone https://github.com/sthoran/OOP_habit_tracker.git*
+```git clone https://github.com/sthoran/OOP_habit_tracker.git```
 
 ### <u> Run instructions
 
@@ -27,15 +27,15 @@
 * Open cmd (OS windows)
 * Go to working directory via following command
 
-*cd OOP_habit_tracker*
+```cd OOP_habit_tracker```
 
 * set the initial database
 
-*python -c "import sqldb; sqldb.init_db()*
+```python -c "import sqldb; sqldb.init_db()```
 
 * run the main.py file to execute the program via following bash command:
 
-*python main.py*
+```python main.py```
 
 * now you only need to follow the questions and instructions from the habit tracker, which are run automatically by running the main.py file
 
