@@ -1,7 +1,4 @@
-if __name__ == '__main__':
-    from .. import identity_class    
-else:
-    import identity_class
+import identity_class
 
 """maintests for databse integrity, availability and accessability
 """
