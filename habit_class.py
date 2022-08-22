@@ -41,30 +41,27 @@ class habits(identity_class.identity):
         respectively via sqlite3."""
         con, cur = sqldb.connect_db()
         habit = input('Which habit, did you complete?: \t')
-        check_off_date_answer = input("Did you complete your habit today? Please enter (y) or (q) for quit: \t").lower()
-        while check_off_date_answer not in ['y', 'q']:
-            print('Input letter was wrong, Please choose between yes (y) or quit(q)')
+        while habit not in self.df['habit'].unique():
+            print(f'Ups! Your habit can not be found, please retry typing your habit or press "q" to quit.')
+            habit = input()
             if habit == 'q':
-                sys.exit('Goodbye')
-        if check_off_date_answer == 'y':
-            tmp_date = self.currentDate
-            sql1 = """INSERT INTO habit (username, password, start_date, habit, period)
-                      SELECT DISTINCT username, password, start_date, habit, period 
-                      FROM habit 
-                      WHERE username = ? AND password = ? AND habit = ?"""
-            cur.execute(sql1, (self.username, self.password, habit))
-            sql2 = """UPDATE habit 
-                      SET check_off = ? WHERE username= ? AND password = ? AND habit= ? AND (check_off = "" OR check_off is NULL OR check_off = 'None')
-                    """
-            cur.execute(sql2, (tmp_date, self.username, self.password, habit))
-            cur.execute('SELECT DISTINCT habit, period, check_off FROM habit WHERE username = ? AND password = ? AND check_off = ?'
-                        , (self.username, self.password, tmp_date))
-            print(cur.fetchone())
-            con.commit()
-            con.close()
-            print(f'Very good! You completed your habit {habit} at the {tmp_date}.')
-        else:
-            sys.exit('Goodbye')
+                return habit  
+        tmp_date = self.currentDate
+        sql1 = """INSERT INTO habit (username, password, start_date, habit, period)
+                    SELECT DISTINCT username, password, start_date, habit, period 
+                    FROM habit 
+                    WHERE username = ? AND password = ? AND habit = ?"""
+        cur.execute(sql1, (self.username, self.password, habit))
+        sql2 = """UPDATE habit 
+                    SET check_off = ? WHERE username= ? AND password = ? AND habit= ? AND (check_off = "" OR check_off is NULL OR check_off = 'None')
+                """
+        cur.execute(sql2, (tmp_date, self.username, self.password, habit))
+        cur.execute('SELECT DISTINCT habit, period, check_off FROM habit WHERE username = ? AND password = ? AND check_off = ?'
+                    , (self.username, self.password, tmp_date))
+        print(cur.fetchone())
+        con.commit()
+        con.close()
+        print(f'Very good! You completed your habit {habit} at the {tmp_date}.')
 
 
     def delete_habit(self):

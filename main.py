@@ -10,7 +10,7 @@ if __name__ == '__main__':
     un, pwd = userInteraction.uia_init()  # asks for either 'register' or 'login'
 
     # object for classes, that are going to be used in the code
-    habit = habit_class.habits(un, pwd)
+    habit_obj = habit_class.habits(un, pwd)
     ana_obj = analysis.ana_habits(un, pwd)
     
     userinput = '' # so that we enter the next while loop atleast 1 time
@@ -25,15 +25,15 @@ if __name__ == '__main__':
             userinput = userInteraction.habit_maintenance()
             if userinput == 'h':
                 """create and save a new habit in the database"""
-                userinput = habit.create_habit()
+                userinput = habit_obj.create_habit()
                 continue
             if userinput == 'c':
                 """check off existing habits and save date in the database"""
-                userinput = habit.check_off()
+                userinput = habit_obj.check_off()
                 continue
             if userinput == 'd':
                 """delete habits irrevocable from the database"""
-                userinput = habit.delete_habit()
+                userinput = habit_obj.delete_habit()
             else:
                 # abort program
                 sys.exit("Goodbye!")
