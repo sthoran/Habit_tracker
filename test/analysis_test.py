@@ -35,3 +35,10 @@ def test_streak_per_habit_car_wash():
     ana_obj = analysis.ana_habits(username, password)
     # test for habit 'car wash'
     assert ana_obj.streak_per_habit(testing=True, habit='wash car')[1] == 2
+
+
+def test_struggle():
+    ana_obj = analysis.ana_habits(username, password)
+    bla = ana_obj.analysis_all_habits()
+    #test for struggle 
+    assert bla['laundry']['struggles'] == 4

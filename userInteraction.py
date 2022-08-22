@@ -1,8 +1,6 @@
 import sys
 import identity_class
 
-
-
 def uia_init():
     """ Asks for login, register or quit via input () and return values un, pwd (username, password),
      which where requested by "un, pwd = identityClass.ask_for_creds()" function.

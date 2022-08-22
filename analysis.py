@@ -43,13 +43,13 @@ class ana_habits(identity_class.identity):
     def analysis_all_habits(self):
         """In order to filter for all habits and their respective periodicity it is assumed that
         one habit can not have 2 different periodicity.
-        :returns: a dictionary of habit with respective longest streak
+        :returns: a dictionary of habit with respective longest streak, struggles
         """
         habit_dict_tmp = {}
         habit_dict = {}
 
         habits = self.df_user['habit'].unique()
-
+        
         for habit in habits:
             # 1. get the distinct dataframe for each habit from user
             # 2. reset index to make it accessable dynamically

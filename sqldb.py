@@ -114,6 +114,7 @@ def dummy_fill_db(cur):
     cur.execute("INSERT INTO habit VALUES ('75','user1','123wer4!','2022-06-25','work out', 'd', '2022-07-26')")
     cur.execute("INSERT INTO habit VALUES ('76','user1','123wer4!','2022-06-25','work out', 'd', '2022-07-29')")
 
+
 def init_db():
     create_table()
     con, cur = connect_db()
