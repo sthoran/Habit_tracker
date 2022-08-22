@@ -1,5 +1,9 @@
-import sqldb
-import analysis
+if __name__ == '__main__':
+    from .. import sqldb
+    from .. import analysis
+else:
+    import sqldb
+    import analysis
 
 """maintests for habit accessability, analytics and availability
 it is necessary to build up a filled database object to work with, that is done in module scope which would not be the standard approach for
