@@ -49,3 +49,5 @@ While this works inside an IDE which marks "main.py" as our starting point, it w
 ```python -m pytest```
 
 This will trigger pytest with normal behaviour and the static tests that are implemented.
+
+#### NOTE: Triggering pytest will reset the database to init.
