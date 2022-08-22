@@ -6,8 +6,8 @@
 
 * Terminal operated program.
 * Data is stored permanently in a local database (SQLite). User has ability to change database entry by adding or deleteing habits.
-* User can user three time schedules for habit tracking (daily, weekly, monthly).
-* Successfully completed habits can be documented with the "check off" feature. The day of completion is than documented in the database.
+* User can use three time schedules for habit tracking (daily, weekly, monthly).
+* Successfully completed habits can be documented with the "check off" feature. The day of completion is documented in the database.
 * User entries are secured by registration via username and user password
 * Analysis of habit tracking process does include:
     1. Streak count for a user-defined habit (Streak means, longest consecutive period of successfully completed habits)
