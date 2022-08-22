@@ -24,14 +24,14 @@
 ### <u> Run instructions
 
 * Download the source file in a directory of your choice. 
-* Open a terminal within desired directory
-* run following bash command to set the initial database
+* Open cmd (OS windows)
+* Go to working directory via following command
 
 *cd OOP_habit_tracker*
 
-* change into working directory
+* set the initial database
 
-*python sqldb.py init_db*
+*python -c "import sqldb; sqldb.init_db()*
 
 * run the main.py file to execute the program via following bash command:
 
