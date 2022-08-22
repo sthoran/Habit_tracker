@@ -42,13 +42,10 @@
  
 ### <u> Using Pytest for static test
 
-When cloning the repository you can find static tests in the package (i.e. folder) <sub>test</sub>. Running the native cli command *pytest* from the working directory will not work. The reason for that is pythons import mechanic: The program in development is run from "main.py" and thus it is taking the namespace *__name__ == __main__*. All modules in subfolders can import modules from the root, in which main.py resides, without specifying a relative path.
+When cloning the repository you can find static tests in the package (i.e. folder) _test_. Running the native cli command *pytest* from the working directory will not work. The reason for that is pythons import mechanic: The program in development is run from "main.py" and thus it is taking the namespace *\_\_name\_\_ == \_\_main\_\_*. All modules in subfolders can import modules from the root, in which main.py resides, without specifying a relative path.
 
 While this works inside an IDE which marks "main.py" as our starting point, it will not work with *pytest*, due to the reason that pytest does not know where to find the modules. There we need to call pytest via python:
 
-*python -m pytest*
+```python -m pytest```
 
 This will trigger pytest with normal behaviour and the static tests that are implemented.
-
-```python
-```
